@@ -2,14 +2,8 @@
 def countSquares(matrix):
     if (len(matrix) == 0):
         return 0
-    #print(len(matrix))
-    #print(len(matrix[0]))
-
-    #grab max size
-
     max_size = max(len(matrix),len(matrix[0]))
     
-    #run conv on all 1's until max size is the size of the square
     conv = 1
     sub_arrays = []
     while conv <= max_size:
@@ -20,7 +14,17 @@ def countSquares(matrix):
                 sub_arrays.append(sub)
         conv += 1
     print(sub_arrays)
-
+    count = 0
+    for sub in sub_arrays:
+        all_ones = True
+        for i in sub:
+            for j in i:
+                if j == 0:
+                    all_ones = False
+                    break
+        if all_ones == True:
+            count += 1
+    return count
 
 mat = [[0,1],[1,1],[0,1]]
 print(countSquares(mat))
